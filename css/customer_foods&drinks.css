@@ -57,17 +57,19 @@ li a:hover {
   margin: auto;
 }
 
-b {
+.logo a{
   font-size: 40px;
   font-family: 'Great Vibes';
   color: #2c2c34;
   cursor: pointer;
   display: block;
   margin: 0 auto;
+  font-weight: bold;
+  margin-top: -5px;
 }
 
-nav ul li b {
-  margin-top: -5px;
+.logo a:hover{
+  color: #2c2c34;
 }
 
 .material-symbols-outlined {
@@ -93,14 +95,14 @@ nav ul li b {
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-c .button {
+.mbutton button {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
-c button {
+.mbutton { 
   display: block;
   width: 250px;
   height: 50px;
@@ -118,29 +120,53 @@ c button {
   transition: all .35s;
 }
 
-c button:hover {
+.mbutton:hover {
   width: 200px;
   border: 3px solid #F9DA79;
   background: transparent;
   color: #2c2c34;
 }
 
+
 /*========================================================================*/
 
+html,
 body {
-  background-color: #F2F2F8;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F2F8;
+}
+
+main {
+    flex: 1;
 }
 
 h1 {
   color: #343a40;
   padding: 16px 0px 0px;
   text-align: center;
-  font-size: 45px;
+  font-size: 40px;
   font-family: 'Open Sans', sans-serif;
   font-weight: bold;
   margin-bottom: 10px;
   text-decoration: none;
   text-underline-position: under;
+}
+
+footer {
+  text-align: center;
+  padding: 1px;
+  background-color: #F9DA79;
+  color: black;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
 table {

@@ -83,102 +83,6 @@ li a:hover {
 }
 
 /*========================================================================*/
-html,
-body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    background-color: #F2F2F8;
-}
-
-main {
-    flex: 1;
-}
-
-h1 {
-  color: #343a40;
-  padding: 16px 0px 0px;
-  text-align: center;
-  font-size: 40px;
-  font-family: 'Open Sans', sans-serif;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-decoration: underline;
-  text-underline-position: under;
-}
-
-footer {
-  text-align: center;
-  padding: 1px;
-  background-color: #F9DA79;
-  color: black;
-  font-family: 'Open Sans', sans-serif;
-  font-size: 15px;
-  border-top: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-table {
-  margin-top: 100px;
-  margin-left: 200px;
-  border-collapse: collapse;
-}
-
-.menu-row {
-  display: block;
-  margin-bottom: 30px;
-}
-
-.menu-item {
-  display: inline-block;
-  max-width: 250px;
-  margin-right: 30px;
-  vertical-align: top;
-}
-
-.item-image {
-  width: 100%;
-  height: auto;
-  border-radius: 5%;
-}
-
-.item-details {
-  margin-top: 10px;
-  text-align: center;
-}
-
-.item-name {
-  font-weight: bold;
-  font-size: 1.2em;
-  margin-bottom: 5px;
-  font-family: 'Heebo', sans-serif;
-
-}
-
-.item-price {
-  font-size: 1.2em;
-  margin-bottom: 5px;
-  font-family: 'Heebo', sans-serif;
-}
-
-.item-description {
-  margin-bottom: 10px;
-  overflow: auto;
-  padding-bottom: 50px;
-  width: 200px;
-  height: 100px;
-  padding: 10px;
-  text-align: center;
-  margin: auto;
-  font-family: 'Heebo', sans-serif;
-  font-size: 10.5pt;
-}
-
-/*========================================================================*/
 
 .add-to-cart {
   font-family: 'Ubuntu', sans-serif;
@@ -231,51 +135,165 @@ table {
 }
 
 /*========================================================================*/
-
-.container2 {
-  display: flex;
-  justify-content: center;
-  margin-top: 50px;
-  margin-bottom: -30px;
+html,
+body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.container2 button {
-  margin: 0 20px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+body {
+    display: flex;
+    flex-direction: column;
+    background-color: #F2F2F8;
 }
 
-.mbutton button {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+main {
+    flex: 1;
 }
 
-.mbutton { 
-  display: block;
-  width: 250px;
-  height: 50px;
-  line-height: 45px;
-  font-weight: bold;
-  font-size: 12pt;
-  font-family: 'Ubuntu', sans-serif;
-  text-decoration: none;
-  background: #F9DA79;
+h1 {
+  color: #343a40;
+  padding: 16px 0px 0px;
   text-align: center;
-  color: #2c2c34;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border: 3px solid #F9DA79;
-  transition: all .35s;
+  font-size: 40px;
+  font-family: 'Open Sans', sans-serif;
+  font-weight: bold;
+  margin-bottom: 100px;
+  text-decoration: underline;
+  text-underline-position: under;
 }
 
-.mbutton:hover {
-  width: 200px;
-  border: 3px solid #F9DA79;
-  background: transparent;
-  color: #2c2c34;
+footer {
+  text-align: center;
+  padding: 1px;
+  background-color: #F9DA79;
+  color: black;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 15px;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
 }
 
+.item-details {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  margin: 0 auto;
+  max-width: 960px;
+}
 
+.item-image {
+  width: 250px;
+  height: 250px;
+  margin-right: 100px;
+  border-radius: 5%;
+}
+
+.item-name {
+  font-weight: bold;
+  font-size: 1.8em;
+  margin-bottom: 5px;
+  font-family: 'Heebo', sans-serif;
+}
+
+.item-price {
+  font-size: 1.5em;
+  margin-bottom: 5px;
+  font-family: 'Heebo', sans-serif;
+}
+
+.item-description {
+  font-size: 16px;
+  margin-bottom: 20px;
+  font-family: 'Heebo', sans-serif;
+}
+
+label[for="quantity"] {
+  font-size: 16px;
+  font-family: 'Heebo', sans-serif;
+}
+
+.add-minus {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  margin-top: 5px;
+}
+
+.add-minus button {
+  width: 30px;
+  height: 30px;
+  border: none;
+  background-color: #F2F2F8;
+  border:1px;
+  cursor: pointer;
+}
+
+.add-minus button:hover {
+  color:red;
+}
+
+.add-minus input[type="number"] {
+  width: 80px;
+  height: 30px;
+  margin: 0 10px;
+  border: none;
+  text-align: center;
+  font-size: 16px;
+  font-family: 'Heebo', sans-serif;
+}
 
 /*========================================================================*/
+
+.cta {
+  border: none;
+  background: none;
+  margin-left: 50px;
+  margin-bottom: 50px;
+  margin-top: 70px;
+}
+ 
+.cta span {
+  padding-bottom: 7px;
+  letter-spacing: 4px;
+  font-size: 12px;
+  padding-right: 15px;
+  text-transform: uppercase;
+}
+ 
+.cta svg {
+  transform: translateX(-8px);
+  transition: all 0.3s ease;
+}
+ 
+.cta:hover svg {
+  transform: translateX(0);
+}
+ 
+.cta:active svg {
+  transform: scale(0.9);
+}
+ 
+.hover-underline-animation {
+  position: relative;
+  color: black;
+  padding-bottom: 20px;
+}
+ 
+.hover-underline-animation:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  transform: scaleX(0);
+  height: 1.5px;
+  bottom: 0;
+  left: 0;
+  background-color: #000000;
+  transform-origin: bottom right;
+  transition: transform 0.25s ease-out;
+}
+ 
+.cta:hover .hover-underline-animation:after {
+  transform: scaleX(1);
+  transform-origin: bottom left;
+}
