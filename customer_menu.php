@@ -3,7 +3,22 @@ include("dataconnection.php");
 
 session_start();
 
-include("customer_loginVerification.php");
+//To remove the error message when user isn't logged in but try to access the page
+error_reporting(E_ERROR | E_PARSE);
+
+$user_email = $_SESSION['user_email'];
+$result = mysqli_query($connect,"SELECT * FROM users WHERE user_email = '$user_email'");
+$row=mysqli_fetch_assoc($result);
+
+if(!isset($_SESSION['user_email'] ))
+{
+	?>
+        <script type="text/javascript">
+            alert("Please log in!");
+            window.location.href='customer_signup&login.php';
+        </script>
+        <?php
+}
 
 //Retrieve the menu items from the database
 $sql = "SELECT * FROM menu";
@@ -31,6 +46,7 @@ while ($row = mysqli_fetch_assoc($result)) {
 </head>
 
 <body style = "margin:0">
+<main>
 <!-- Navbar -->
 <nav>
     <ul>
@@ -38,7 +54,7 @@ while ($row = mysqli_fetch_assoc($result)) {
          <li><a href="customer_menu.php">Menu</a></li>
          <li><a href="customer_account.php">Account</a></li>
          
-         <li style="position: absolute; left: 50%; transform: translateX(-50%);"><a href="customer_dashboard.php"><b>Vanilla Café</b></a></li>
+         <li class="logo" style="position: absolute; left: 50%; transform: translateX(-50%);"><a href="customer_dashboard.php">Vanilla Café</a></li>
  
          <li style="float:right"><a href="customer_logout.php" span class="material-symbols-outlined" style="font-size: 35px; padding-right:60px;">Logout</span></a></li>
          <li style="float:right"><a href="customer_shoppingcart.php" span class="material-symbols-outlined" style="font-size: 35px;">shopping_cart</span></a></li>
@@ -59,7 +75,7 @@ while ($row = mysqli_fetch_assoc($result)) {
     $category_title = $row['menu_category_title'];
     $page_url = ($category_id == 1) ? 'customer_foods.php' : 'customer_drinks.php';
   ?>
-    <c><button type="button" onclick="document.location='<?php echo $page_url; ?>?id=<?php echo $category_id; ?>'" title="Go to <?php echo $category_title; ?> page"><?php echo $category_title; ?></button></c>
+    <button class="mbutton" type="button" onclick="document.location='<?php echo $page_url; ?>?id=<?php echo $category_id; ?>'" title="Go to <?php echo $category_title; ?> page"><?php echo $category_title; ?></button>
   <?php } ?>
 </div>
 
@@ -101,6 +117,11 @@ while ($row = mysqli_fetch_assoc($result)) {
     
   <?php } ?>
 </table>
+
+</main>
+  <footer>
+          <p>All Rights Reserved © 2023 by Vanilla Café</p>
+  </footer>
 
 
 </body>

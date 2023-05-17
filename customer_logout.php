@@ -1,16 +1,10 @@
 <?php 
-include("dataconnection.php"); 
-
-
 session_start();
-unset($_SESSION["email"]);
-unset($_SESSION["password"]);
-
+session_unset();
+session_destroy();
 ?>
 
 <script type="text/javascript">
-	alert("You have successfully logout!");
-    window.location.href='index.php';
+	alert("You have successfully logged out!");
+    window.location.href='customer_signup&login.php';
 </script>
-
-
