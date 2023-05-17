@@ -2,21 +2,26 @@
 include("dataconnection.php"); 
 
 session_start();
-/*
-$email=$_SESSION['email'];	
-$result=mysqli_query($connect,"SELECT * FROM customer WHERE CUST_EMAIL='$email'");
 
+//To remove the error message when user isn't logged in but try to access the page
+error_reporting(E_ERROR | E_PARSE);
+
+$user_email = $_SESSION['user_email'];
+$result = mysqli_query($connect,"SELECT * FROM users WHERE user_email = '$user_email'");
 $row=mysqli_fetch_assoc($result);
 
-if(!isset($_SESSION['email'] ))
+if(!isset($_SESSION['user_email'] ))
 {
 	?>
-	<script>alert("Please log in!");</script>
-	<?php
-	header("Location:login.php");
+        <script type="text/javascript">
+            alert("Please log in!");
+            window.location.href='customer_signup&login.php';
+        </script>
+        <?php
 }
-*/
+    
 ?>
+
 
 <!DOCTYPE html>
 <html>
@@ -31,14 +36,15 @@ if(!isset($_SESSION['email'] ))
 </head>
 
 <body style = "margin:0">
+<main>
 <!-- Navbar -->
     <nav>
         <ul>
          <li><a href="customer_dashboard.php">Home</a></li>
-         <li><a href="customer_menu.php">Menu</a></li>
+         <li><a href="customer_menu.php">Menu</a></li> 
          <li><a href="customer_account.php">Account</a></li>
 
-         <li style="position: absolute; left: 50%; transform: translateX(-50%);"><a href="customer_dashboard.php"><b>Vanilla Café</b></a></li>
+         <li class="logo" style="position: absolute; left: 50%; transform: translateX(-50%);"><a href="customer_dashboard.php">Vanilla Café</a></li>
  
          <li style="float:right"><a href="customer_logout.php" span class="material-symbols-outlined" style="font-size: 35px; padding-right:60px;">Logout</span></a></li>
          <li style="float:right"><a href="customer_shoppingcart.php" span class="material-symbols-outlined" style="font-size: 35px;">shopping_cart</span></a></li>
@@ -53,7 +59,11 @@ if(!isset($_SESSION['email'] ))
             <img class="mySlides" src="images/background2.jpg" style="width:100%; height:100%;">
             <img class="mySlides" src="images/background3.jpg" style="width:100%; height:100%;">
             <div class="centered">
-                <p>Welcome valued customer</p>
+                <?php 
+                    $result = mysqli_query($connect,"SELECT user_name FROM users WHERE user_email = '$user_email'");
+                    $_SESSION['user_name'] = $row['user_name']; 
+                ?>
+                <p>Welcome valued customer <br><i><?php echo $_SESSION['user_name'] ?></i></p>
                 <button onclick="window.location.href='customer_menu.php'">Order Now</button>
             </div>
         </section>
@@ -103,6 +113,11 @@ if(!isset($_SESSION['email'] ))
             slides[slideIndex-1].style.display = "block";
         }
     </script>
+    
+    </main>
+    <footer>
+        <p>All Rights Reserved © 2023 by Vanilla Café</p>
+    </footer>
 
 </body>
 </html>
