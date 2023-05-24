@@ -242,3 +242,7 @@ label[for="quantity"] {
     display: flex;
     justify-content: flex-end;
 }
+
+.custom-swal-font {
+    font-family: 'Open Sans', sans-serif;
+}

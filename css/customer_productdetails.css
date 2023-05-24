@@ -297,3 +297,7 @@ label[for="quantity"] {
   transform: scaleX(1);
   transform-origin: bottom left;
 }
+
+.custom-swal-font {
+  font-family: 'Open Sans', sans-serif;
+}
