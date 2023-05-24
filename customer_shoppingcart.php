@@ -18,6 +18,7 @@ if(!isset($_SESSION['user_email'] ))
             window.location.href='customer_signup&login.php';
         </script>
         <?php
+        exit;
 }
 
 // Get user's shopping cart items from the database
@@ -28,19 +29,6 @@ $result = mysqli_query($connect, "SELECT * FROM shopping_cart
 
 // Count the number of items in the shopping cart
 $num_rows = mysqli_num_rows($result);
-
-//delete item
-if(isset($_POST['delete'])) {
-    $item_id = $_POST['item_id'];
-    $result = mysqli_query($connect, "DELETE FROM shopping_cart WHERE Item_ID = '$item_id' AND user_id = '$user_id' AND cart_status = 1");
-    ?>
-        <script>
-            alert("Item deleted");
-            window.location.href ="customer_shoppingcart.php";
-        </script>
-    <?php
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -49,15 +37,17 @@ if(isset($_POST['delete'])) {
     <meta charset="utf-8">
     <title>Shopping Cart | Vanilla Cafe</title>
     <link rel = "icon" href="images/logo.jpg" type = "image/x-icon">
-    <link rel="stylesheet" type="text/css" href="css/customer_shoppingcart.css">
+    <link rel="stylesheet" href="css/customer_shoppingcart.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">  
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta name="viewreport" content="width=devive-width, initial-scale=1.0">
 </head>
 
 <body style = "margin:0">
-<main>
+
 <!-- Navbar -->
 <nav>
     <ul>
@@ -73,7 +63,7 @@ if(isset($_POST['delete'])) {
     </ul>
  </nav>
 <!-- end of Navbar -->
-
+<main>
 <h1>Shopping Cart</h1>
 
 <?php if($num_rows > 0) { ?>
@@ -101,7 +91,7 @@ if(isset($_POST['delete'])) {
 					<div class="add-minus">
 						<button type="button" class="minus-btn" onclick="decrementValue(this)"><i class="fa fa-minus"></i></button>										
 
-						<input type="number" id ="quantity" name="quantity_<?php echo $row['Item_ID']; ?>" value="<?php echo $row['Item_qty']?>" min="1" data-item-id="<?php echo $row['Item_ID']; ?>">
+						<input type="number" id ="quantity" name="quantity_<?php echo $row['Item_ID']; ?>" value="<?php echo $row['Item_qty']?>" min="1" max="99" data-item-id="<?php echo $row['Item_ID']; ?>" readonly>
 
 						<button type="submit" class="plus-btn" onclick="incrementValue(this)"><i class="fa fa-plus"></i></button>						
 					</div>
@@ -187,4 +177,39 @@ if(isset($_POST['delete'])) {
 
 </body>
 </html>
+
+<?php
+//delete item
+if(isset($_POST['delete'])) {
+    $item_id = $_POST['item_id'];
+    $result = mysqli_query($connect, "DELETE FROM shopping_cart WHERE Item_ID = '$item_id' AND user_id = '$user_id' AND cart_status = 1");
+    ?>
+        <script>
+            Swal.fire({
+                title: "Item deleted",
+                icon: "success",
+                customClass: {
+                    container: 'custom-swal-font'
+                }
+            }).then(function() {
+                window.location.href = "customer_shoppingcart.php";
+            });
+        </script>
+    <?php
+}
+
+?>
+
+<?php
+// Calculate the total price
+$total = 0;
+mysqli_data_seek($result, 0);
+while ($row = mysqli_fetch_assoc($result)) {
+    $subtotal = $row['Item_Price'] * $row['Item_qty'];
+    $total += $subtotal;
+}
+
+// Store the total price in a session variable
+$_SESSION['total_price'] = $total;
+?>
 

@@ -18,6 +18,7 @@ if(!isset($_SESSION['user_email'] ))
             window.location.href='customer_signup&login.php';
         </script>
         <?php
+        exit;
 }
 
 
@@ -39,34 +40,6 @@ $result = mysqli_query($connect,"SELECT user_id FROM users WHERE user_email = '$
 $row = mysqli_fetch_assoc($result);
 $_SESSION['user_id'] = $row['user_id'];
 
-// Handle add to cart action
-if(isset($_POST['add_to_cart'])){
-    $item_id = $_POST['item_id'];
-    $user_id = $_SESSION['user_id'];
-    $quantity = $_POST['quantity'];
-    $cart_status = 1;
-
-    // Check if item already exists in the user's cart
-    $check_query = "SELECT * FROM shopping_cart WHERE Item_ID = $item_id AND user_id = $user_id AND cart_status = 1";
-    $check_result = mysqli_query($connect, $check_query);
-
-    if(mysqli_num_rows($check_result) > 0){
-        // Update the existing cart item with the new quantity
-        $cart_item = mysqli_fetch_assoc($check_result);
-        $new_qty = $cart_item['Item_qty'] + $quantity;
-        $cart_id = $cart_item['cart_id'];
-        $update_query = "UPDATE shopping_cart SET Item_qty = $new_qty WHERE cart_id = $cart_id";
-        $update_result = mysqli_query($connect, $update_query);
-    } else {
-        // Add the new item to the user's cart
-        $insert_query = "INSERT INTO shopping_cart (user_id, Item_ID, Item_qty, cart_status) VALUES ($user_id, $item_id, $quantity, $cart_status)";
-        $insert_result = mysqli_query($connect, $insert_query);
-    }
-
-    // Display success message
-    echo '<script>alert("Item added successfully.");</script>';
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -79,6 +52,8 @@ if(isset($_POST['add_to_cart'])){
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <meta name="viewreport" content="width=devive-width, initial-scale=1.0">
 </head>
 
@@ -125,7 +100,7 @@ if(isset($_POST['add_to_cart'])){
                     <i class="fa fa-minus"></i>
                 </button>
 
-                <input type="number" id ="quantity" name="quantity" value="1" min="1">
+                <input type="number" id ="quantity" name="quantity" value="1" min="1" max="99" readonly>
                             
                 <button type="button" class="plus-btn"
                     onclick="this.parentNode.querySelector('input[type=number]').stepUp()">
@@ -168,3 +143,42 @@ if(isset($_POST['add_to_cart'])){
 
 </body>
 </html>
+
+<?php
+// Handle add to cart action
+if(isset($_POST['add_to_cart'])){
+    $item_id = $_POST['item_id'];
+    $user_id = $_SESSION['user_id'];
+    $quantity = $_POST['quantity'];
+    $cart_status = 1;
+
+    // Check if item already exists in the user's cart
+    $check_query = "SELECT * FROM shopping_cart WHERE Item_ID = $item_id AND user_id = $user_id AND cart_status = 1";
+    $check_result = mysqli_query($connect, $check_query);
+
+    if(mysqli_num_rows($check_result) > 0){
+        // Update the existing cart item with the new quantity
+        $cart_item = mysqli_fetch_assoc($check_result);
+        $new_qty = $cart_item['Item_qty'] + $quantity;
+        $cart_id = $cart_item['cart_id'];
+        $update_query = "UPDATE shopping_cart SET Item_qty = $new_qty WHERE cart_id = $cart_id";
+        $update_result = mysqli_query($connect, $update_query);
+    } else {
+        // Add the new item to the user's cart
+        $insert_query = "INSERT INTO shopping_cart (user_id, Item_ID, Item_qty, cart_status) VALUES ($user_id, $item_id, $quantity, $cart_status)";
+        $insert_result = mysqli_query($connect, $insert_query);
+    }
+
+    // Display success message
+    echo '<script>
+            Swal.fire({
+                title: "Item added successfully",
+                icon: "success",
+                customClass: {
+                    container: \'custom-swal-font\'
+                }
+            });
+        </script>';
+        }
+
+?>
