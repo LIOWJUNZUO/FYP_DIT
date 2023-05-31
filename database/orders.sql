@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 23, 2023 at 07:13 PM
+-- Generation Time: May 31, 2023 at 02:59 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -45,10 +45,18 @@ CREATE TABLE `orders` (
 --
 
 INSERT INTO `orders` (`order_id`, `order_number`, `user_id`, `order_totalprice`, `order_receiver_name`, `order_receiver_email`, `order_receiver_phone`, `order_receiver_address`, `order_date`, `order_status`) VALUES
-(1, 'PO202305231819526', 6, '46.80', 'Test001', 'Testing001@email.com', '0123456789', '123 Jalan MMU', '2023-05-24 00:19:52', 1),
-(2, 'PO202305240041057', 7, '39.00', 'Test002', 'Testing002@email.com', '0123456789', '28 Jalan D3 Taman Dahlia Bukit Beruang, 75450 Ayer Keroh, Malacca', '2023-05-24 00:41:05', 1),
-(3, 'PO202305240046257', 7, '25.30', 'Test002', 'Testing002@email.com', '0123456789', '30 Jalan D3A Taman Dahlia Bukit Beruang, 75450 Ayer Keroh, Malacca', '2023-05-24 00:46:25', 1),
-(4, 'PO202305240051041', 1, '21.00', 'Tan', 'tan@gmail.com', '0125896358', '123, Jalan Ayer Keroh Lama, 75450 Bukit Beruang, Melaka', '2023-05-24 00:51:04', 1);
+(1, 'PO202305242211076', 6, '18.20', 'Test001', 'Testing001@email.com', '012-345-6789', 'No 20, Jalan D7, 75450 Bukit Beruang, Melaka', '2023-05-24 22:11:07', 1),
+(2, 'PO202305242217435', 5, '29.90', 'Josh Lim', 'lim@gmail.com', '01128252182', '20, Jalan SS1, Taman Seri Selendang, Melaka City, 75350, Melaka', '2023-05-24 22:17:43', 1),
+(3, 'PO202305250016293', 3, '6.90', 'Yuu', 'yuu@gmail.com', '0125896586', '4, Jalan TU 2, 75450 Ayer Keroh, Melaka', '2023-05-25 00:16:29', 1),
+(4, 'PO202305250019303', 3, '25.00', 'Yuu', 'yuu@gmail.com', '0125896586', '4, Jalan TU 2, 75450 Ayer Keroh, Melaka', '2023-05-25 00:19:30', 1),
+(5, 'PO202305250026213', 3, '9.70', 'Yuu', 'yuu@gmail.com', '0125896586', '4, Jalan TU 2, 75450 Ayer Keroh, Melaka', '2023-05-25 00:26:21', 1),
+(6, 'PO202305250040333', 3, '9.70', 'Xiao Yuu', 'yuu@gmail.com', '0125896586', '4, Jalan TU 2, 75450 Ayer Keroh, Melaka', '2023-05-25 00:40:33', 1),
+(7, 'PO202305250049205', 5, '21.40', 'Lim Lerk', 'lim@gmail.com', '0124589635', '20, Jalan SS1, Taman Seri Selendang, Melaka City, 75350, Melaka', '2023-05-25 00:49:20', 1),
+(8, 'PO202305250054495', 5, '21.00', 'Lim Lerk', 'lim@gmail.com', '0124589635', '20, Jalan SS1, Taman Seri Selendang, Melaka City, 75350, Melaka', '2023-05-25 00:54:49', 1),
+(9, 'PO202305251627416', 6, '12.80', 'Test001', 'Testing001@email.com', '012-345-6789', '123 Jalan MMU', '2023-05-25 16:27:41', 1),
+(10, 'PO202305260912556', 6, '20.70', 'Test001', 'Testing001@email.com', '01128582188', '123 Jalan MMU', '2023-05-26 09:12:56', 1),
+(11, 'PO202305301756446', 6, '35.00', 'Test001', 'Testing001@email.com', '01128582188', '4, Jalan TU 2, 75450 Ayer Keroh, Melaka', '2023-05-30 17:56:44', 1),
+(12, 'PO202305310152096', 6, '6.90', 'Test001', 'Testing001@email.com', '01128582188', '4, Jalan TU 2, 75450 Ayer Keroh, Melaka', '2023-05-31 01:52:09', 1);
 
 --
 -- Indexes for dumped tables
@@ -69,7 +77,7 @@ ALTER TABLE `orders`
 -- AUTO_INCREMENT for table `orders`
 --
 ALTER TABLE `orders`
-  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `order_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- Constraints for dumped tables

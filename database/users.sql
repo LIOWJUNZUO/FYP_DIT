@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 06, 2023 at 10:03 AM
+-- Generation Time: May 31, 2023 at 03:00 PM
 -- Server version: 10.4.21-MariaDB
 -- PHP Version: 7.3.30
 
@@ -43,10 +43,10 @@ CREATE TABLE `users` (
 INSERT INTO `users` (`user_id`, `user_name`, `user_email`, `user_phonenumber`, `user_password`, `user_address`) VALUES
 (1, 'Tan', 'tan@gmail.com', '0125896358', '2528-Ghu', '123, Jalan Ayer Keroh Lama, 75450 Bukit Beruang, Melaka'),
 (2, 'Jiu', 'jiu@gmail.com', '0129856389', '5896+Edr', ''),
-(3, 'Yuu', 'yuu@gmail.com', '0125896586', ')opP8954', ''),
+(3, 'Yuu', 'yuu@gmail.com', '0125896586', ')opP8954', '4, Jalan TU 2, 75450 Ayer Keroh, Melaka'),
 (4, 'Wen', 'wen@gmail.com', '0125693856', 'pOa\\8965', ''),
-(5, 'Lim', 'lim@gmail.com', '0124589635', '4545]Poi', ''),
-(6, 'Test001', 'Testing001@email.com', '012-345-6789', 'Test1234', '123 Jalan MMU'),
+(5, 'Lim', 'lim@gmail.com', '0124589635', '4545]Poi', '20, Jalan SS1, Taman Seri Selendang, Melaka City, 75350, Melaka'),
+(6, 'Test001', 'Testing001@email.com', '01128582188', 'Test1234', '4, Jalan TU 2, 75450 Ayer Keroh, Melaka'),
 (7, 'Test002', 'Testing002@email.com', '0123456789', 'Test1234', ''),
 (8, 'Test003', 'Testing003@hotmail.com', '0123456789', 'Test1234', '');
 
