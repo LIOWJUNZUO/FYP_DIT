@@ -53,7 +53,7 @@ $num_rows = mysqli_num_rows($result);
     <ul>
          <li><a href="customer_dashboard.php">Home</a></li>
          <li><a href="customer_menu.php">Menu</a></li>
-         <li><a href="customer_account.php">Account</a></li>
+         <li><a href="customer_account.php">My Account</a></li>
          
          <li class="logo" style="position: absolute; left: 50%; transform: translateX(-50%);"><a href="customer_dashboard.php">Vanilla Café</a></li>
  
@@ -63,7 +63,9 @@ $num_rows = mysqli_num_rows($result);
     </ul>
  </nav>
 <!-- end of Navbar -->
+
 <main>
+    
 <h1>Shopping Cart</h1>
 
 <?php if($num_rows > 0) { ?>

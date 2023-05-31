@@ -58,13 +58,13 @@ $_SESSION['user_id'] = $row['user_id'];
 </head>
 
 <body style = "margin:0">
-<main>
+
 <!-- Navbar -->
 <nav>
     <ul>
          <li><a href="customer_dashboard.php">Home</a></li>
          <li><a href="customer_menu.php">Menu</a></li>
-         <li><a href="customer_account.php">Account</a></li>
+         <li><a href="customer_account.php">My Account</a></li>
          
          <li class="logo" style="position: absolute; left: 50%; transform: translateX(-50%);"><a href="customer_dashboard.php">Vanilla Café</a></li>
  
@@ -75,8 +75,9 @@ $_SESSION['user_id'] = $row['user_id'];
  </nav>
 <!-- end of Navbar -->
 
-<h1>Product Details</h1>
+<main>
 
+<h1>Product Details</h1>
 
 <!-- Display the item information -->
 <div class="item-details">

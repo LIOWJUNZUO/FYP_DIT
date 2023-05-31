@@ -3,6 +3,9 @@ include("dataconnection.php");
 
 session_start();
 
+//To remove the error message when user isn't logged in but try to access the page
+error_reporting(E_ERROR | E_PARSE);
+
 $user_email = $_SESSION['user_email'];
 $result = mysqli_query($connect,"SELECT * FROM users WHERE user_email = '$user_email'");
 $row=mysqli_fetch_assoc($result);
@@ -15,6 +18,7 @@ if(!isset($_SESSION['user_email'] ))
             window.location.href='customer_signup&login.php';
         </script>
         <?php
+        exit;
 }
 
 $user_id = $row['user_id'];

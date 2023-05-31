@@ -72,7 +72,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <ul>
          <li><a href="customer_dashboard.php">Home</a></li>
          <li><a href="customer_menu.php">Menu</a></li>
-         <li><a href="customer_account.php">Account</a></li>
+         <li><a href="customer_account.php">My Account</a></li>
          
          <li class="logo" style="position: absolute; left: 50%; transform: translateX(-50%);"><a href="customer_dashboard.php">Vanilla Café</a></li>
  
@@ -123,12 +123,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
               <input type="text" id="cname" name="cardname" oninput="convertToUpperCase()" required>
 
               <label for="ccnum">Credit/Debit card number</label>
-              <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" maxlength="19" oninput="formatCardNumber()" required>
+              <input type="text" id="ccnum" name="cardnumber" placeholder="1111-2222-3333-4444" maxlength="19" oninput="formatCardNumber()" onkeypress="return isNumberKey(event)"required>
 
               <label for="cvv">CVV</label>
               <input type="text" id="cvv" name="cvv" placeholder="123" maxlength="3" onkeypress="return isNumberKey(event)" required> 
 
-              <label for="exp">Expiration date</label>
+              <label for="exp">Expiration date (MM/YY)</label>
               <input type="text" id="exp" name="exp" placeholder="MM/YY" maxlength="5" oninput="formatExpirationDate()" required>
 
             </div><!--end of col-50-->
@@ -297,8 +297,11 @@ if (isset($_POST['payment'])) {
                 VALUES ('$orderNumber', {$row['user_id']}, $totalPrice, '{$receiverName}', '{$email}', '{$phone}', '{$receiverAddress}', NOW(), 1)";
   mysqli_query($connect, $query);
 
-  // Update the cart status in the shopping_cart table
-  $query = "UPDATE shopping_cart SET cart_status = 2 WHERE user_id = {$row['user_id']}";
+  // Retrieve the last inserted order ID
+  $orderID = mysqli_insert_id($connect);
+
+  // Update the cart status and order ID in the shopping_cart table if order_id is NULL
+  $query = "UPDATE shopping_cart SET cart_status = 2, order_id = $orderID WHERE user_id = {$row['user_id']} AND order_id IS NULL";
   mysqli_query($connect, $query);
 
   // Check and update the user address
@@ -310,15 +313,19 @@ if (isset($_POST['payment'])) {
   // Show an alert after successful submission
   ?>
   <script>
-      Swal.fire({
-          title: 'Purchase successfully!<br>Thank you!',
-          icon: 'success',
-          customClass: {
-              container: 'custom-swal-font'
-          }
+    Swal.fire({
+        title: 'Processing...',
+        icon: 'info',
+        customClass: {
+          container: 'custom-swal-font'
+        },
+        showConfirmButton: false, // Hide the default "OK" button
+        allowOutsideClick: false, // Prevent clicking outside the dialog
+        timer: 3000,
       }).then(function() {
-          window.location.href = "customer_dashboard.php";
-      });
+        window.location.href = "customer_orderConfirm.php";
+    });
+
   </script>
 
   <?php

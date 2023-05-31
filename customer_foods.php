@@ -18,6 +18,7 @@ if(!isset($_SESSION['user_email'] ))
             window.location.href='customer_signup&login.php';
         </script>
         <?php
+        exit;
 }
 
 // Check if an item category has been selected
@@ -56,13 +57,13 @@ while ($row = mysqli_fetch_assoc($result)) {
 </head>
 
 <body style = "margin:0">
-<main>
+
 <!-- Navbar -->
 <nav>
     <ul>
          <li><a href="customer_dashboard.php">Home</a></li>
          <li><a href="customer_menu.php">Menu</a></li>
-         <li><a href="customer_account.php">Account</a></li>
+         <li><a href="customer_account.php">My Account</a></li>
          
          <li class="logo" style="position: absolute; left: 50%; transform: translateX(-50%);"><a href="customer_dashboard.php">Vanilla Café</a></li>
  
@@ -73,6 +74,7 @@ while ($row = mysqli_fetch_assoc($result)) {
  </nav>
 <!-- end of Navbar -->
 
+<main>
 <h1><a href="customer_foods.php?id=1" style="color: #343a40;">Cakes</a></h1>
 
 <div class="container2">

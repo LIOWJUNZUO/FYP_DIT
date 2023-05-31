@@ -18,6 +18,7 @@ if(!isset($_SESSION['user_email'] ))
             window.location.href='customer_signup&login.php';
         </script>
         <?php
+        exit;
 }
     
 ?>
@@ -36,13 +37,13 @@ if(!isset($_SESSION['user_email'] ))
 </head>
 
 <body style = "margin:0">
-<main>
+
 <!-- Navbar -->
     <nav>
         <ul>
          <li><a href="customer_dashboard.php">Home</a></li>
          <li><a href="customer_menu.php">Menu</a></li> 
-         <li><a href="customer_account.php">Account</a></li>
+         <li><a href="customer_account.php">My Account</a></li>
 
          <li class="logo" style="position: absolute; left: 50%; transform: translateX(-50%);"><a href="customer_dashboard.php">Vanilla Café</a></li>
  
@@ -53,6 +54,7 @@ if(!isset($_SESSION['user_email'] ))
      </nav>
 <!-- end of Navbar -->
 
+<main>
      <div class="container">
         <section>
             <img class="mySlides" src="images/background1.jpg" style="width:100%; height:100%;">
